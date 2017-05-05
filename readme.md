@@ -25,7 +25,179 @@ Mustache templates, and the built-in helpers really come in handy. Depending on 
 want them in the default location. If you’re developing something for mobile devices the templates can be pre-compiled 
 for even faster loading.
 
+### WordPress version
+
+[Cardinal Store Locator plugin for WordPress](https://cardinalwp.com/) is now available, which uses this jQuery plugin 
+as a base and all of the settings can be set via a settings page in the WP dashboard. It also integrates with core 
+WordPress features such as custom post types for location data and custom taxonomies for location categorization and 
+filtering.
+
+
 ## Changelog
+
+### Version 2.7.2
+
+* Added [callbackRegion](callbacks/callback-region.md) callback, which allows region to be set before being sent to the Google Maps Geocoding API.
+* Fixed incorrect origin marker parameter order after code restructure.
+* Fixed [issue](https://github.com/bjorn2404/jQuery-Store-Locator-Plugin/issues/160) where searching by name after searching by address, without a new address, didn't reset the origin.
+* Merged pull-request from [ollea](https://github.com/ollea) that adds "getMap" function that returns a google.maps.Map instance.
+
+### Version 2.7.1
+
+* Hotfix to prevent potential error with updated filterData method if the category of a location is undefined.
+
+### Version 2.7.0
+
+* Added [callback documentation](callbacks.md).
+* Added callbackCreateMarker for custom marker overrides.
+* Added [InfoBubble](https://github.com/googlemaps/js-info-bubble) support and example file.
+* Added location results total count if HTML element with "bh-sl-total-results" class exists.
+* Added checks to replace non-ASCII characters when filtering.
+* Added reset functionality that can be triggered via a button that has the CSS class "bh-sl-reset".
+* Added query string parameter filter check so that results can be filtered with URL query strings.
+* Fixed issue with maxDistance and querystringParams settings combination.
+* Moved some functionality from processData into new separate methods.
+* Removed non-standard $1 RegExp property in processData method.
+
+### Version 2.6.2
+
+* Added callbackMapSet callback that fires after the map has been set up.
+* Fixed issue where locations without attributes set could get the attribute values from prior locations.
+* Fixed issue where pagination total number of pages was based on the full location set total instead of the storeLimit setting.
+* Removed form markup from initial query string example index file as it's not needed until the submission page.
+
+### Version 2.6.1
+
+* Added additional error handling when the plugin checks the closest location.
+* Added listener for autoComplete change so that the search processes when a new place is selected.
+* Fixed [issue with new boundary search](https://github.com/bjorn2404/jQuery-Store-Locator-Plugin/issues/127) AJAX params after a full address search was made.
+* Merged in pull request from [noclat](https://github.com/noclat) that added autoCompleteOptions setting.
+
+### Version 2.6.0
+
+* Added bounds and formatted address info from geocoding API to AJAX data parameters.
+* Added Marker Clusterer library support, setting and example file.
+* Added disableAlphaMarkers setting to completely disable displaying markers and location list indicators with alpha characters.
+* Fixed issue with combination of autoGeocode and originMarker settings.
+* Merged in pull request from [drcomix](https://github.com/drcomix) that fixed zoom issue with dragSearch setting.
+* Switched included remote scripts in example files to https.
+* Updated jQuery references to the latest version.
+
+### Version 2.5.3
+
+* Removed check from createMarker method that removed spaces from categories - created issues with categories that have spaces.
+* Re-worked handling of no results.
+* Updated createMarker method to ensure custom category marker images are converted to integers if strings are passed for dimensions.
+* Updated autoGeocode and default location functionality so that max distance is applied on initial load.
+
+### Version 2.5.2
+
+* Fixed pagination bubbling issue.
+* Fixed pagination issues with autoGeocode and dragSearch combinations.
+
+### Version 2.5.1
+
+* Fixed issues with visibleMarkersList and location list background colors and selection.
+
+### Version 2.5.0
+
+* Added new dragSearch setting which performs a new search when the map is dragged when enabled.
+* Added new geocodeID setting so that the HTML geocoding API can be triggered by a button instead of firing automatically.
+* Fixed issues with no results where clicking the marker would display data from the previous result and clicking the location list item would throw an error.
+* Merged in pull request from [hawkmeister](https://github.com/hawkmeister) with update to bower.json file with main property.
+* Merged in pull request from [hyperTwitch](https://github.com/hyperTwitch) with fixes for using fullMapStartListLimit in combination with a different store limit.
+* Updated jQuery references to the latest version.
+
+### Version 2.4.2
+
+* Fixed issue with new full map start location list limit where clicking on a marker that didn't have a list item
+displayed caused an error.
+* Fixed issue with settings combination of inline directions and default location.
+* Reverted change to new list limit so that it's always applied with full map start enabled.
+
+### Version 2.4.1
+
+* Changed new full map start list limit so that it's only applied on the initial load.
+* Fixed issue with new autocomplete setting where search was firing twice.
+
+### Version 2.4.0
+
+* Added new selected marker image options to highlight clicked marker.
+* Added Google Places autocomplete option and example file.
+* Added full map start location list limit setting.
+
+### Version 2.3.3
+
+* Removed code that temporarily hid the map and results, when there are no results, in favor of just displaying the no 
+results message and empty map.
+
+### Version 2.3.2
+
+* Tweaked list label width styling.
+
+### Version 2.3.1
+
+* Added preventative styling to inline directions panel table.
+* Switched to unitless line-heights.
+
+### Version 2.3.0
+
+* Added fullMapStartBlank option to show a blank map without any locations initially. Set this setting to an integer, 
+which will be applied as the initial Google Maps zoom value and will then fall back to the mapSettings zoom level after
+a search is performed.
+* Added fullMapStartBlank example file.
+* Fixed filters select field styling inconsistency.
+* Moved pagination container within map container div in pagination example to avoid confusion when combined with modal option.
+* Reworked styling so that all HTML example files are responsive by default.
+* Updated map-container ID in all example files with bh-sl prefix.
+
+### Version 2.2.2
+
+* Added preventative styling to avoid table conflicts with directions panel.
+* Fixed clearMarkers issue with inline directions enabled.
+
+### Version 2.2.1
+
+* Updated preventative styling to be more specific to the map container and added max-height img rule.
+
+### Version 2.2.0
+
+* Added check for Google Maps API.
+* Added Grunt Handlebars task for compiling Handlebars templates from src directory - will add more compatibility in future release.
+* Added preventative styling to avoid conflicts with CSS frameworks and resets.
+* Default design refresh.
+* Fixed bug with inline directions panel that occurred after multiple address submissions.
+* Removed sensor parameter from Google Maps API URL as it's no longer needed.
+* Switched the default plugin styling from LESS to SASS.
+* Updated included Handlebars to v4.0.5.
+
+### Version 2.1.0
+
+Includes contributions from from [Giancarlo Gomez](https://github.com/GiancarloGomez).
+
+* Added ability to pass in array object as dataRaw.
+* Added writeDebug console.log helper function for debugging.
+* Added sessionStorage option to store user's location when autoGeocode in enabled to prevent multiple lookups per session.
+* Fixed bug with inline directions panel that occurred after multiple address submissions.
+* Updated processForm method form field variables with empty string fallback values.
+
+### Version 2.0.9
+
+* Fixed issue when using catMarkers setting and not setting a location's category resulted in an error.
+
+### Version 2.0.8
+
+* Changed infowindow and location list templates so that the comma is added if the city is available.
+* Fixed issue with inline directions where "null" was prepended to the destination address.
+* Fixed close directions bug where close icon couldn't be clicked more than two times.
+* Fixed bug where form wasn't overriding query string parameters.
+* Updated processForm method to accept max distance query string parameter.
+* Updated processForm method to use existing origin data if it's present and matches to avoid unnecessary geocode 
+requests.
+* Updated max distance check to less than or equal to the selected distance vs. just less than.
+* Updated regionID description in options.md for clarity.
+* Updated formEventHandler method to prevent ASP.net form submission on keydown instead of keyup.
+* Updated mapSettings description in options.md to highlight that zoom can be set to 0 for automatic centering and zooming.
 
 ### Version 2.0.7
 
@@ -199,7 +371,7 @@ a duplicate locationset declaration on line 328.
 
 This is a large update that has many updates and improvements. It’s very important to note that the plugin now requires the [Handlebars](http://handlebarsjs.com) template engine. I made this change so that the data that’s displayed in the location list and the infowindows can be easily customized. I also wanted to separate the bulk of the layout additions from the main plugin file. Handlebars pretty slick, will read Mustache templates, and the built-in helpers can really come in handy. Depending on what your data source is, 2 of the 4 total templates will be used (KML vs XML or JSON) and there are options to set the paths of each template if you don’t want them in the default location. If you’re developing something for mobile devices the templates can be pre-compiled for even faster loading. Additionally, I’d also like to note that it probably makes more sense to use KML now as the data source over the other options but I’m definitely leaving XML and JSON support in. XML is still the default datatype but I may switch it to KML in the future.
 
-####New features:####
+#### New features: ####
 
 **Kilometers option**  
 This was a no-brainer. You could make the change without too much trouble before but I thought I’d make it easier for the rest of the world.
